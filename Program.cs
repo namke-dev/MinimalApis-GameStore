@@ -7,8 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Register service game access, 
 // defie service fife time as Singleton
-
-// builder.Services.AddSingleton<IGamesRepository, InMemGamesRepository>(); => switch service
 builder.Services.AddSingleton<IGamesRepository, EntityFrameworkGamesRepository>();
 
 // Use builder.Configuration to read value in appsetting.json
