@@ -1,3 +1,4 @@
+using System.Reflection;
 using GameStoreApi.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,4 +12,11 @@ public class GameStoreContext : DbContext
     }
 
     public DbSet<Game> Games => Set<Game>();
+
+    //After create GameConfiguration class, I implement this config here
+    // by override the OnModelCreating method
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 }
