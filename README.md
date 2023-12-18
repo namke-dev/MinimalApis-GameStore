@@ -41,3 +41,8 @@ To remove migrations:
 ```powershell
 dotnet ef migrations remove
 ```
+
+Init database schema:
+```powershell
+dotnet ef database update
+```
