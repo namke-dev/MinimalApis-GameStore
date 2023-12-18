@@ -19,3 +19,9 @@ docker run: Command to run a Docker container.
 --rm: Removes the container automatically once it is stopped.
 --name mssql: Assigns the name mssql to the container.
 mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04: Specifies the Docker image to be used for the container. In this case, it's the SQL Server 2022 preview edition running on Ubuntu 22.04 provided by Microsoft Container Registry (MCR).
+
+## Setting the connection string to secrect management
+```powershell
+$sa_password = "MyPassword123"
+dotnet user-secrets set "ConnectionStrings:GameStoreContext" "Server=localhost,1433; Database=GameStore; Usre Id=sa; Password=$sa_password;TrustServerCertificate=True"
+```
