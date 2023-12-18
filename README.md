@@ -5,6 +5,8 @@
 $sa_password = "MyPassword123"
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$sa_password" -e "MSSQL_PID=Evaluation" -p 1433:1433  --name sqlpreview --hostname sqlpreview -v sqlvolume:/var/opt/mssql -d --rm --name mssql mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
 ```
+Issue solver: https://github.com/microsoft/mssql-docker/issues/55
+
 **database server connect string: localhost,1433
 
 docker run: Command to run a Docker container.
@@ -57,3 +59,5 @@ Init database schema:
 ```powershell
 dotnet ef database update
 ```
+
+Apply DB Migrations on application start up
