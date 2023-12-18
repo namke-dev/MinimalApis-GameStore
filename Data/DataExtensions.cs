@@ -1,3 +1,4 @@
+using GameStoreApi.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameStoreApi.Data;
@@ -11,6 +12,17 @@ public static class DataExtensions
         using var scope = serviceProvider.CreateScope();
         var DbContext = scope.ServiceProvider.GetRequiredService<GameStoreContext>();
         DbContext.Database.Migrate();
-        //This has same effect as run .NET CLI to run EF migrate 
+    }
+
+    public static IServiceCollection AddRepositoryService(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        var connectionString = configuration.GetConnectionString("GameStoreContext");
+        services.AddSqlServer<GameStoreContext>(connectionString)
+                .AddScoped<IGamesRepository, EntityFrameworkGamesRepository>();
+
+        return services;
     }
 }
