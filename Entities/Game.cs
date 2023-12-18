@@ -11,13 +11,13 @@ namespace GameStoreApi.Entities
         public required string Name { get; set; }
 
         [Required]
-        [StringLength(500)]
+        [StringLength(50)]
         public required string Genres { get; set; }
 
         [Range(1, 300)]
         public decimal Price { get; set; }
         public DateTime ReleaseDate { get; set; }
-        [Required]
+        [Url]
         [StringLength(200)]
         public required string ImageUri { get; set; }
 
