@@ -23,5 +23,21 @@ mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04: Specifies the Docker i
 ## Setting the connection string to secrect management
 ```powershell
 $sa_password = "MyPassword123"
-dotnet user-secrets set "ConnectionStrings:GameStoreContext" "Server=localhost,1433; Database=GameStore; Usre Id=sa; Password=$sa_password;TrustServerCertificate=True"
+dotnet user-secrets set "ConnectionStrings:GameStoreContext" "Server=localhost,1433; Database=GameStore; User Id=sa; Password=$sa_password;TrustServerCertificate=True"
+```
+
+Get list secrets:
+```powershell
+dotnet user-secrets list
+```
+install EF Core:
+```powershell
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityframeworkCore.Design
+dotnet ef migrations add InitialCreate --output-dir Data\Migrations
+```
+To remove migrations:
+```powershell
+dotnet ef migrations remove
 ```
