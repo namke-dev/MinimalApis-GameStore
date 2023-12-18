@@ -10,6 +10,6 @@ builder.Services.AddRepositoryService(builder.Configuration);
 
 var app = builder.Build();
 
-app.Services.InitializeDb();
+await app.Services.InitializeDbAsync();
 app.MapGamesEndpoint();
 app.Run();
